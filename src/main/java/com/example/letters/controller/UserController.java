@@ -24,7 +24,7 @@ public class UserController {
     }
 
     @GetMapping("/{id}")
-    public UserDto getUserById(@PathVariable long id) {
+    public UserDto getUserById(@PathVariable Long id) {
         return userService.getUserById(id);
     }
 
@@ -34,18 +34,18 @@ public class UserController {
     }
 
     @DeleteMapping("/{id}")
-    public void deleteUser(@PathVariable long id) {
+    public void deleteUser(@PathVariable Long id) {
         userService.deleteUser(id);
     }
 
     @GetMapping("/{userId}/letters")
-    public String getLetterById(@PathVariable long userId) {
+    public String getLetterById(@PathVariable Long userId) {
         return userService.getLetterById(userId);
     }
 
     @PatchMapping("/{userId}/letters")
     public User addLetter(
-            @PathVariable long userId,
+            @PathVariable Long userId,
             @RequestBody Map<String, String> body
     ) {
         return userService.addLetterToUser(userId, body.get("letter"));
