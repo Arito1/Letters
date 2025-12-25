@@ -11,5 +11,5 @@ public class UserDto {
     Long id;
     String username;
     String password;
-    String letterDto;
+    String letter;
 }
