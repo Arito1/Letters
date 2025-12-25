@@ -6,6 +6,7 @@ import com.example.letters.service.UserService;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/users")
@@ -43,7 +44,10 @@ public class UserController {
     }
 
     @PatchMapping("/{userId}/letters")
-    public User addLetter(@PathVariable long userId, @RequestBody String letter) {
-        return userService.addLetterToUser(userId, letter);
+    public User addLetter(
+            @PathVariable long userId,
+            @RequestBody Map<String, String> body
+    ) {
+        return userService.addLetterToUser(userId, body.get("letter"));
     }
 }

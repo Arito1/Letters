@@ -30,11 +30,11 @@ public class UserService {
         userRepo.deleteById(id);
     }
     public String getLetterById(long id) {
-        return userRepo.findById(id).get().getLetter();
+        return userRepo.findById(id).orElseThrow().getLetter();
     }
     public User addLetterToUser(long userId, String letter) {
-        UserDto user = getUserById(userId);
-        user.setLetterDto(letter);
-        return userRepo.save(userMapper.toUser(user));
+        User user = userRepo.findById(userId).orElseThrow();
+        user.setLetter(letter);
+        return userRepo.save(user);
     }
 }

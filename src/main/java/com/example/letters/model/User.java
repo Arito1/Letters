@@ -19,5 +19,6 @@ public class User {
     private long id;
     private String username;
     private String password;
+    @Column(columnDefinition = "TEXT")
     private String letter;
 }
