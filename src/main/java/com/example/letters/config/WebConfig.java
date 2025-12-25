@@ -11,8 +11,7 @@ public class WebConfig implements WebMvcConfigurer {
     public void addCorsMappings(CorsRegistry registry) {
         registry.addMapping("/**")
                 .allowedOrigins(
-                        "https://letters-front-end.onrender.com",
-                        "https://your-app-name.netlify.app"
+                        "https://letters-front-end.onrender.com"
                 )
                 .allowedMethods("GET","POST","PUT", "PATCH","DELETE","OPTIONS")
                 .allowedHeaders("*")
