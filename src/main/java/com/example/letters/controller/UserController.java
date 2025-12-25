@@ -1,6 +1,6 @@
 package com.example.letters.controller;
 
-import com.example.letters.model.Letter;
+import com.example.letters.dto.UserDto;
 import com.example.letters.model.User;
 import com.example.letters.service.UserService;
 import org.springframework.web.bind.annotation.*;
@@ -18,17 +18,17 @@ public class UserController {
     }
 
     @GetMapping
-    public List<User> getAllUsers() {
+    public List<UserDto> getAllUsers() {
         return userService.getAllUsers();
     }
 
     @GetMapping("/{id}")
-    public User getUserById(@PathVariable long id) {
+    public UserDto getUserById(@PathVariable long id) {
         return userService.getUserById(id);
     }
 
     @PostMapping
-    public void addUser(@RequestBody User user) {
+    public void addUser(@RequestBody UserDto user) {
         userService.addUser(user);
     }
 
@@ -38,15 +38,12 @@ public class UserController {
     }
 
     @GetMapping("/{userId}/letters")
-    public List<Letter> getUserLetters(@PathVariable long userId) {
-        return userService.getUserLetters(userId);
+    public String getLetterById(@PathVariable long userId) {
+        return userService.getLetterById(userId);
     }
 
-    @PostMapping("/users/{userId}/letters")
-    public Letter addLetter(
-            @PathVariable long userId,
-            @RequestBody Letter letter
-    ) {
+    @PatchMapping("/{userId}/letters")
+    public User addLetter(@PathVariable long userId, @RequestBody String letter) {
         return userService.addLetterToUser(userId, letter);
     }
 }

@@ -19,11 +19,5 @@ public class User {
     private long id;
     private String username;
     private String password;
-    @OneToMany(fetch = FetchType.EAGER)
-    @JoinTable(
-            name = "users_letters",
-            joinColumns = @JoinColumn(name = "user_id"),
-            inverseJoinColumns = @JoinColumn(name = "letter_id")
-    )
-    private List<Letter> letters;
+    private String letter;
 }
