@@ -2,6 +2,7 @@ package com.example.letters.service;
 
 import com.example.letters.model.Letter;
 import com.example.letters.model.User;
+import com.example.letters.repo.LetterRepo;
 import com.example.letters.repo.UserRepo;
 import org.springframework.stereotype.Service;
 
@@ -10,8 +11,11 @@ import java.util.List;
 @Service
 public class UserService {
     private final UserRepo userRepo;
-    public UserService(UserRepo userRepo) {
+    private final LetterRepo letterRepo;
+
+    public UserService(UserRepo userRepo, LetterRepo letterRepo) {
         this.userRepo = userRepo;
+        this.letterRepo = letterRepo;
     }
 
     public List<User> getAllUsers() {
@@ -31,5 +35,13 @@ public class UserService {
                 .orElseThrow(() -> new RuntimeException("User not found"));
 
         return user.getLetters();
+    }
+    public Letter addLetterToUser(long userId, Letter letter) {
+        User user = getUserById(userId);
+
+        letter.setUser(user);
+        user.getLetters().add(letter);
+
+        return letterRepo.save(letter);
     }
 }

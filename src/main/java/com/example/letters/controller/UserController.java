@@ -1,5 +1,6 @@
 package com.example.letters.controller;
 
+import com.example.letters.model.Letter;
 import com.example.letters.model.User;
 import com.example.letters.service.UserService;
 import org.springframework.web.bind.annotation.*;
@@ -34,5 +35,18 @@ public class UserController {
     @DeleteMapping("/{id}")
     public void deleteUser(@PathVariable long id) {
         userService.deleteUser(id);
+    }
+
+    @GetMapping("/{userId}/letters")
+    public List<Letter> getUserLetters(@PathVariable long userId) {
+        return userService.getUserLetters(userId);
+    }
+
+    @PostMapping("/users/{userId}/letters")
+    public Letter addLetter(
+            @PathVariable long userId,
+            @RequestBody Letter letter
+    ) {
+        return userService.addLetterToUser(userId, letter);
     }
 }

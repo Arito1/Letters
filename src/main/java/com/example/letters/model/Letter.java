@@ -10,10 +10,12 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name = "users")
 public class Letter {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     private String text;
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private User user;
 }
